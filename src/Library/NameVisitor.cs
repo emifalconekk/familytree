@@ -1,19 +1,19 @@
 ﻿namespace Library;
 
-public class NameVisitor
+public class NameVisitor : IVisitor<Person>
 {
-    private int sum = 0;
-
-    public int Sum
+    private string longest;
+    public NameVisitor()
     {
-        get
-        {
-            return this.sum;
-        }
+        this.longest = "";
     }
-
+    
     public void Visit(Node<Person> node)
     {
-        sum += node.Value.Age;
+        Person ActualPerson = node.Value;
+        if (ActualPerson.Name.Length > longest.Length)
+        {
+            longest = node.Value.Name;
+        }
     }
 }
